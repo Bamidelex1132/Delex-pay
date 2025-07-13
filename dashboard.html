@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - DelexPay</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+
+  <div class="bg-gray-800 p-6 rounded shadow-md w-full max-w-md text-center">
+    <h1 class="text-2xl font-bold text-blue-400 mb-4">
+      Welcome, <span id="welcomeUser">User</span>!
+    </h1>
+    <p class="mb-6">You're successfully logged in to DelexPay.</p>
+    <button id="logoutBtn" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white font-bold">
+      Logout
+    </button>
+  </div>
+
+  <script>
+    // 🔐 Redirect if not logged in
+    if (localStorage.getItem("loggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+
+    // 🧑 Display the user's name
+    const userName = localStorage.getItem("currentUser");
+    if (userName) {
+      document.getElementById("welcomeUser").textContent = userName;
+    }
+
+    // 🚪 Logout function
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("loggedIn");
+      localStorage.removeItem("currentUser");
+      alert("You've been logged out.");
+      window.location.href = "login.html";
+    });
+  </script>
+
+</body>
+</html>

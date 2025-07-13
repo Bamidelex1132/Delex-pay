@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Delex Pay</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="assets/css/index.css">
+    </head>
+    <body class="bg-gray-900 text-white font sans">
+        <div id="navbar-placeholder"></div>
+        <script>
+            fetch("components/navbar.html")
+            .then(res => res.text())
+            .then(data => {document.getElementById("navbar-placeholder").innerHTML = data;       
+            });
+        </script>
+        <div class="Hero-Section">
+            <p>One Payment,<br><span>Multiple Networks</span></p>
+            <h4>Fund once and handle all your blockchain fees.</h4>
+            <p>- no limits, no delays-</p>
+            <p>Just one funding take care of all your crpto</p>
+        </div>
+        <a href="login.html" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Get Started</a>
+        <div id="footer-placeholder"></div>
+        <script>
+            fetch("components/footer.html")
+            .then(res => res.text())
+            .then(data => {document.getElementById("footer-placeholder").innerHTML = data;       
+            });
+        </script>
+    </body>
+</html>
