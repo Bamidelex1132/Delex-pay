@@ -39,12 +39,12 @@
     <section class="mb-12 grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="bg-gray-800 p-6 rounded shadow-lg">
         <h2 class="text-lg font-semibold mb-2">Wallet Balance (₦)</h2>
-        <p class="text-4xl font-bold text-green-400">₦3,212,500.00</p>
+        <p id="nairaBalance" class="text-4xl font-bold text-green-400">₦0.00</p>
         <p class="text-sm text-gray-500">Equivalent in Naira</p>
       </div>
       <div class="bg-gray-800 p-6 rounded shadow-lg">
         <h2 class="text-lg font-semibold mb-2">Wallet Balance ($)</h2>
-        <p class="text-4xl font-bold text-green-400">$4,215.00</p>
+        <p id="usdBalance" class="text-4xl font-bold text-green-400">$0.00</p>
         <p class="text-sm text-gray-500">Based on live FX rate</p>
       </div>
     </section>
@@ -52,19 +52,8 @@
     <!-- Portfolio Breakdown -->
     <section class="bg-gray-800 p-6 rounded shadow-lg">
       <h2 class="text-lg font-semibold mb-4">Your Portfolio</h2>
-      <div class="space-y-3">
-        <div class="flex justify-between">
-          <span>Bitcoin (BTC)</span>
-          <span>0.054 BTC · <span class="text-green-400">₦1,672,000</span></span>
-        </div>
-        <div class="flex justify-between">
-          <span>Ethereum (ETH)</span>
-          <span>1.32 ETH · <span class="text-green-400">₦1,200,000</span></span>
-        </div>
-        <div class="flex justify-between">
-          <span>Solana (SOL)</span>
-          <span>12.5 SOL · <span class="text-green-400">₦340,500</span></span>
-        </div>
+      <div id="portfolio" class="space-y-3">
+        <!-- Portfolio items will be injected here -->
       </div>
     </section>
   </main>
@@ -80,15 +69,62 @@
   </style>
 
   <!-- Scripts -->
-  <script>
+   <script>
+const userWallets = {
+  "john_doe": {
+    name: "John Doe",
+    nairaBalance: 4500000.00,
+    usdBalance: 5800.00,
+    portfolio: [
+      { asset: "Bitcoin (BTC)", amount: "0.08 BTC", value: "₦2,400,000" },
+      { asset: "TRON (TRX)", amount: "1500 TRX", value: "₦120,000" },
+      { asset: "Tether (USDT)", amount: "1000 USDT", value: "₦1,500,000" },
+      { asset: "Pi Network (PI)", amount: "300 PI", value: "₦90,000" },
+      { asset: "SIDRA", amount: "500 SIDRA", value: "₦75,000" },
+      { asset: "Ethereum (ETH)", amount: "0.75 ETH", value: "₦900,000" },
+      { asset: "Solana (SOL)", amount: "10 SOL", value: "₦300,000" }
+    ]
+  },
+
+  "jane_smith": {
+    name: "Jane Smith",
+    nairaBalance: 2200000.00,
+    usdBalance: 2800.00,
+    portfolio: [
+      { asset: "Bitcoin (BTC)", amount: "0.03 BTC", value: "₦900,000" },
+      { asset: "TRON (TRX)", amount: "800 TRX", value: "₦64,000" },
+      { asset: "Tether (USDT)", amount: "400 USDT", value: "₦600,000" },
+      { asset: "Ethereum (ETH)", amount: "0.45 ETH", value: "₦540,000" },
+      { asset: "Solana (SOL)", amount: "5 SOL", value: "₦150,000" }
+    ]
+  }
+};
+
+
     // Redirect if not logged in
     if (localStorage.getItem("loggedIn") !== "true") {
       window.location.href = "login.html";
     }
 
-    // Show user name
-    const userName = localStorage.getItem("currentUser");
-    if (userName) document.getElementById("welcomeUser").textContent = userName;
+    // Load user data
+    const currentUserKey = localStorage.getItem("currentUser");
+    const userData = userWallets[currentUserKey];
+
+    if (userData) {
+      document.getElementById("welcomeUser").textContent = userData.name;
+      document.getElementById("nairaBalance").textContent = `₦${userData.nairaBalance.toLocaleString()}`;
+      document.getElementById("usdBalance").textContent = `$${userData.usdBalance.toLocaleString()}`;
+
+      const portfolioDiv = document.getElementById("portfolio");
+      userData.portfolio.forEach(item => {
+        const div = document.createElement("div");
+        div.classList.add("flex", "justify-between");
+        div.innerHTML = `<span>${item.asset}</span><span>${item.amount} · <span class="text-green-400">${item.value}</span></span>`;
+        portfolioDiv.appendChild(div);
+      });
+    } else {
+      document.getElementById("welcomeUser").textContent = "Unknown User";
+    }
 
     // Logout
     document.getElementById("logoutBtn").addEventListener("click", () => {
@@ -98,12 +134,12 @@
       window.location.href = "login.html";
     });
 
-    // Profile button
+    // Profile
     document.getElementById("profileBtn").addEventListener("click", () => {
-      window.location.href = "profile.html"; // coming soon
+      window.location.href = "profile.html";
     });
 
-    // Action buttons
+    // Placeholder actions
     document.querySelectorAll(".btn-action").forEach(btn => {
       btn.addEventListener("click", () => {
         alert(`${btn.textContent} feature coming soon!`);
@@ -113,3 +149,4 @@
 
 </body>
 </html>
+
