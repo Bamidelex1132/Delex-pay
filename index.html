@@ -17,19 +17,109 @@
             .then(data => {document.getElementById("navbar-placeholder").innerHTML = data;       
             });
         </script>
-        <div class="Hero-Section">
-            <p>One Payment,<br><span>Multiple Networks</span></p>
-            <h4>Fund once and handle all your blockchain fees.</h4>
-            <p>- no limits, no delays-</p>
-            <p>Just one funding take care of all your crpto</p>
+       </head>
+<body class="bg-gray-900 text-white font-sans">
+
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-black">
+    <div class="text-center px-6 max-w-2xl">
+      <p class="text-4xl md:text-5xl font-bold leading-tight mb-4">
+        One Payment,<br>
+        <span class="text-indigo-400">Multiple Networks</span>
+      </p>
+      <h4 class="text-xl md:text-2xl text-gray-300 font-medium mb-4">
+        Fund once and handle all your blockchain fees.
+      </h4>
+      <p class="text-gray-400 italic mb-2">– no limits, no delays –</p>
+      <p class="text-gray-300 mb-6">
+        Just one funding takes care of all your crypto.
+      </p>
+      <a href="login.html" class="bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-6 rounded-lg font-semibold transition">
+        Explore Now
+      </a>
+    </div>
+  </section>
+
+  <!-- Token Stats Section -->
+  <section class="py-16 bg-gray-800">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-8">Network Stats</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-gray-900 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold mb-2">Supported Networks</h3>
+          <p class="text-indigo-400 text-3xl font-bold">12+</p>
         </div>
-        <a href="login.html" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Get Started</a>
-        <div id="footer-placeholder"></div>
-        <script>
+        <div class="bg-gray-900 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold mb-2">Avg. Transaction Time</h3>
+          <p class="text-indigo-400 text-3xl font-bold">3.2s</p>
+        </div>
+        <div class="bg-gray-900 p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold mb-2">Total Gas Saved</h3>
+          <p class="text-indigo-400 text-3xl font-bold">1,200 ETH</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="py-20 bg-gray-900">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-10">How It Works</h2>
+      <div class="grid md:grid-cols-3 gap-8 text-left">
+        <div>
+          <h3 class="text-xl font-semibold mb-2 text-indigo-400">1. Fund</h3>
+          <p class="text-gray-300">Deposit your crypto once using your preferred wallet or card.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2 text-indigo-400">2. Auto-Pay Fees</h3>
+          <p class="text-gray-300">We automatically cover gas fees across supported networks.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2 text-indigo-400">3. Track & Control</h3>
+          <p class="text-gray-300">Monitor usage and set spending limits through your dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-20 bg-gray-800" id="features">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-12">Key Features</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+          <h3 class="text-xl font-semibold mb-2">Decentralized Wallet</h3>
+          <p class="text-gray-400">You own your keys. We never hold your assets.</p>
+        </div>
+        <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+          <h3 class="text-xl font-semibold mb-2">Multi-Network Support</h3>
+          <p class="text-gray-400">Ethereum, BNB, Polygon, Avalanche, Solana, and more.</p>
+        </div>
+        <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+          <h3 class="text-xl font-semibold mb-2">Real-Time Analytics</h3>
+          <p class="text-gray-400">Visualize your gas usage and network fees in one place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-20 bg-gradient-to-r from-purple-800 to-indigo-800 text-center">
+    <h2 class="text-4xl font-bold mb-4">Ready to Simplify Your Crypto Journey?</h2>
+    <p class="text-gray-200 mb-8">Join thousands of users already saving gas and time.</p>
+    <a href="login.html" class="bg-white text-indigo-700 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition">
+      Get Started
+    </a>
+  </section>
+
+<script>
             fetch("components/footer.html")
             .then(res => res.text())
             .then(data => {document.getElementById("footer-placeholder").innerHTML = data;       
             });
         </script>
-    </body>
+</body>
 </html>
+
+ 
+
