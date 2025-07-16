@@ -7,7 +7,7 @@ Delex Pay is a secure and user-friendly crypto trading platform that allows user
 ## 🔗 Live URLs
 
 - **Frontend (Vercel):** [https://delex-pay.vercel.app](https://delex-pay.vercel.app)
-- **Backend API (Render):** `https://delex-api.onrender.com` *(example)*
+- **Backend API (Render):
 
 ---
 
