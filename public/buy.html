@@ -1,0 +1,39 @@
+<h2>Buy Crypto</h2>
+<form id="buyForm" action="/buy" method="POST">
+<label>Choose Coin:</label>
+<select name="coin" id="coin" required>
+<option value="btc">Bitcoin (BTC)</option>
+<option value="usdt">Tether (USDT)</option>
+<option value="ton">Toncoin (TON)</option>
+</select>
+
+<label>Enter Amount (₦):</label>
+<input type="number" name="amount" id="amount" required />
+
+<p id="totalCoins"></p>
+
+<button type="submit">Proceed to Payment</button>
+</form>
+
+<script>
+const priceAPI = { btc: 62000000, usdt: 1500, ton: 900 };
+
+document.getElementById('amount').addEventListener('input', updateCoin);
+document.getElementById('coin').addEventListener('change', updateCoin);
+
+function updateCoin() {
+const coin = document.getElementById('coin').value;
+const amount = parseFloat(document.getElementById('amount').value);
+const price = priceAPI[coin];
+
+if (!isNaN(amount)) {
+const total = amount / price;
+document.getElementById('totalCoins').textContent =
+`You will receive ≈ ${total.toFixed(6)} ${coin.toUpperCase()}`;
+} else {
+document.getElementById('totalCoins').textContent = '';
+}
+}
+</script>
+
+

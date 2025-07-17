@@ -1,0 +1,12 @@
+<h2>Make Payment</h2>
+<p>Please transfer the amount to the account below:</p>
+
+<ul>
+<li><strong>Bank:</strong> Sterling Bank</li>
+<li><strong>Account Name:</strong> Delex Pay</li>
+<li><strong>Account Number:</strong> 1234567890</li>
+</ul>
+
+<form action="/submit-proof" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="coin" value="btc" /> <!-- hidden coin -->
+<input type="hidden" name="amount" value="5000" /> <!-- hidden amount -->
