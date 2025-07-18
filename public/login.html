@@ -6,17 +6,57 @@
   <title>Login - DelexPay</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
 </head>
 <body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
-<form action="/login" method="post">
-<input name="email" type="email" required placeholder="Email"/>
-<input name="Password" type="password"  required placeholder="Password"/>
-<button type="submit">Login</button>
-    <p class="mt-4 text-sm text-center">Don't have an account? <a href="register.html" class="text-blue-400 hover:underline">Sign Up</a></p>
-    <p class="mt-4 text-sm text-center"><a href="index.html" class="text-blue-400 hover:underline">Back</a></p>
+
+<form id="login-form" class="flex flex-col space-y-4 w-96 bg-gray-800 p-8 rounded">
+  <input name="email" id="email" type="email" required placeholder="Email" class="p-2 rounded text-black"/>
+  <input name="password" id="password" type="password" required placeholder="Password" class="p-2 rounded text-black"/>
+  <button type="submit" class="bg-red-600 hover:bg-red-700 p-2 rounded font-semibold">Login</button>
+  <div id="message" class="mt-2 text-center"></div>
+  <p class="mt-4 text-sm text-center">Don't have an account? <a href="register.html" class="text-blue-400 hover:underline">Sign Up</a></p>
+  <p class="mt-4 text-sm text-center"><a href="index.html" class="text-blue-400 hover:underline">Back</a></p>
 </form>
-   <div id="footer"></div>
-   <script src="js/loadpartials.js"></script>
+
+<script>
+  // Initialize Supabase client
+  const supabaseUrl = 'https://aplkwnvrldlcntknpocm.supabase.co'
+  const supabaseAnonKey = 'eyJhbGciOiJIUzIInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFwbGt3bnZybGRsY250a25wb2NtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI4NTYyMDksImV4cCI6MjA2ODQzMjIwOX0.v9SewRB8aacAWrJtb8ikRcHF26dEz6xvCNlRxA64M0k'
+  const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey)
+
+  const form = document.getElementById('login-form')
+  const messageDiv = document.getElementById('message')
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    const email = document.getElementById('email').value.trim()
+    const password = document.getElementById('password').value
+
+    messageDiv.textContent = ''
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+
+    if (error) {
+      messageDiv.textContent = error.message
+      messageDiv.classList.remove('text-green-500')
+      messageDiv.classList.add('text-red-500')
+    } else {
+      messageDiv.textContent = 'Login successful!'
+      messageDiv.classList.remove('text-red-500')
+      messageDiv.classList.add('text-green-500')
+
+      // Redirect user after login, e.g. dashboard
+      setTimeout(() => {
+        window.location.href = '/dashboard.html'
+      }, 1000)
+    }
+  })
+</script>
+
 </body>
 </html>
-
