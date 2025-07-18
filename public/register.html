@@ -6,67 +6,18 @@
   <title>Register - DelexPay</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
 </head>
 <body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
 
-<form id="register-form" class="flex flex-col space-y-4 w-96 bg-gray-800 p-8 rounded">
-  <input name="name" id="name" required placeholder="Full Name" class="p-2 rounded text-black"/>
-  <input name="email" id="email" type="email" required placeholder="Email" class="p-2 rounded text-black"/>
-  <input name="password" id="password" type="password" required placeholder="Password" class="p-2 rounded text-black"/>
-  <input name="confirmPassword" id="confirmPassword" type="password" required placeholder="Confirm Password" class="p-2 rounded text-black"/>
-  <button type="submit" class="bg-red-600 hover:bg-red-700 p-2 rounded font-semibold">Register</button>
-  <div id="message" class="mt-2 text-center"></div>
+<form action="/register" method="post">
+
+<input name="name" required placeholder="Full Name"/>
+<input name="email" type="email" required placeholder="Email"/>
+<input name="Password" type="password"  required placeholder="Password"/>
+<input name="Confirm Password" type="password"  required placeholder="Confirm Password"/>
+<button type="submit">Register</button>
 </form>
-
-<script>
-  // Initialize Supabase client
-  const supabaseUrl = 'https://aplkwnvrldlcntknpocm.supabase.co'
-  const supabaseAnonKey = 'eyJhbGciOiJIUzIInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFwbGt3bnZybGRsY250a25wb2NtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI4NTYyMDksImV4cCI6MjA2ODQzMjIwOX0.v9SewRB8aacAWrJtb8ikRcHF26dEz6xvCNlRxA64M0k'
-  const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey)
-
-  const form = document.getElementById('register-form')
-  const messageDiv = document.getElementById('message')
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault()
-
-    const name = document.getElementById('name').value.trim()
-    const email = document.getElementById('email').value.trim()
-    const password = document.getElementById('password').value
-    const confirmPassword = document.getElementById('confirmPassword').value
-
-    messageDiv.textContent = ''
-    messageDiv.classList.remove('text-red-500', 'text-green-500')
-
-    if (password !== confirmPassword) {
-      messageDiv.textContent = "Passwords do not match."
-      messageDiv.classList.add('text-red-500')
-      return
-    }
-
-    // Call Supabase signUp
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: { full_name: name }  // optional user_metadata
-      }
-    })
-
-    if (error) {
-      messageDiv.textContent = error.message
-      messageDiv.classList.add('text-red-500')
-    } else {
-      messageDiv.textContent = 'Registration successful! Redirecting to login...'
-      messageDiv.classList.add('text-green-500')
-      form.reset()
-      setTimeout(() => {
-        window.location.href = 'login.html'  // Redirect after 3 seconds
-      }, 3000)
-    }
-  })
-</script>
-
+   <div id="footer"></div>
+   <script src="js/loadpartials.js"></script>
 </body>
 </html>
